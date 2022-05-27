@@ -30,7 +30,6 @@ export default {
   methods: {
     logout () {
       const api = `${process.env.VUE_APP_API}logout`
-      // @ts-ignore
       this.$http.post(api, this.user)
         .then((res) => {
           if (res.data.success) {

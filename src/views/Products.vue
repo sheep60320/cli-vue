@@ -1,6 +1,6 @@
 <template>
   <div class="text-end">
-    <button class="btn btn-primary" type="button" @click="$refs.productModal.showModal()">
+    <button class="btn btn-primary" type="button" @click="openModal">
       增加一個產品
     </button>
   </div>
@@ -38,7 +38,7 @@
       </tr>
     </tbody>
   </table>
-  <ProductModal ref="productModal"></ProductModal>
+  <ProductModal ref="productModal" :product="tempProduct" @update-product="updateProduct"></ProductModal>
 </template>
 
 <script>
@@ -48,7 +48,8 @@ export default {
   data () {
     return {
       products: [],
-      pagination: {}
+      pagination: {},
+      tempProduct: {}
     }
   },
   components: {
@@ -57,15 +58,29 @@ export default {
   methods: {
     getProducts () {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/products`
-      // @ts-ignore
       this.$http.get(api)
         .then((res) => {
           if (res.data.success) {
-            console.log(res.data)
+            // console.log(res.data)
             this.products = res.data.products
             this.pagination = res.data.pagination
           }
         })
+    },
+    openModal () {
+      this.tempProduct = {}
+      const productComponent = this.$refs.ProductModal
+      productComponent.showModal()
+    },
+    updateProduct (item) {
+      this.tempProduct = item
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product`
+      const productComponent = this.$refs.productModal
+      this.$http.post(api, { data: this.tempProduct }).then((response) => {
+        // console.log(response)
+        productComponent.hideModal()
+        this.getProducts()
+      })
     }
   },
   created () {
