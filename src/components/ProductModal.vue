@@ -167,10 +167,16 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary"
-                  data-bs-dismiss="modal" @click="$emit('update-product',tempProduct)">取消
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            取消
           </button>
-          <button type="button" class="btn btn-primary">確認</button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            @click="$emit('update-product', tempProduct)"
+          >
+            確認
+          </button>
         </div>
       </div>
     </div>
