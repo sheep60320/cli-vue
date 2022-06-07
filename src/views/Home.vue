@@ -7,7 +7,7 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import HelloWorld from '@/components/HelloWorld.vue';
 
 export default {
   name: 'Home',
@@ -15,7 +15,7 @@ export default {
     HelloWorld
   },
   created () {
-    console.log(process.env.VUE_APP_API, process.env.VUE_APP_PATH)
+    console.log(process.env.VUE_APP_API, process.env.VUE_APP_PATH);
   }
-}
+};
 </script>

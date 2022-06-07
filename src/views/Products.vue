@@ -60,7 +60,7 @@ export default {
       tempProduct: {},
       isNew: false,
       isLoading: false
-    }
+    };
   },
   components: {
     ProductModal,
@@ -71,41 +71,41 @@ export default {
   methods: {
     getProducts (page = 1) {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/products/?page=${page}`;
-      this.isLoading = true
+      this.isLoading = true;
       this.$http.get(api)
         .then((res) => {
-          this.isLoading = false
+          this.isLoading = false;
           if (res.data.success) {
-            console.log(this.pagination)
-            this.products = res.data.products
-            this.pagination = res.data.pagination
+            console.log(this.pagination);
+            this.products = res.data.products;
+            this.pagination = res.data.pagination;
           }
-        })
+        });
     },
     openModal (isNew, item) {
       if (isNew) {
-        this.tempProduct = {}
+        this.tempProduct = {};
       } else {
-        this.tempProduct = { ...item }
+        this.tempProduct = { ...item };
       }
-      this.isNew = isNew
+      this.isNew = isNew;
       // this.tempProduct = {}
-      const productComponent = this.$refs.productModal
-      productComponent.showModal()
+      const productComponent = this.$refs.productModal;
+      productComponent.showModal();
     },
     updateProduct (item) {
-      this.tempProduct = item
-      let api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product`
-      let httpMethod = 'post'
+      this.tempProduct = item;
+      let api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product`;
+      let httpMethod = 'post';
       if (!this.isNew) {
-        api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${item.id}`
-        httpMethod = 'put'
+        api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${item.id}`;
+        httpMethod = 'put';
       }
-      const productComponent = this.$refs.productModal
+      const productComponent = this.$refs.productModal;
       this.$http[httpMethod](api, { data: this.tempProduct }).then((response) => {
-        console.log(response)
-        productComponent.hideModal()
-        this.getProducts()
+        console.log(response);
+        productComponent.hideModal();
+        this.getProducts();
         if (response.data.success) {
           this.getProducts();
           this.emitter.emit('push-message', {
@@ -119,7 +119,7 @@ export default {
             content: response.data.message.join('、')
           });
         }
-      })
+      });
     },
     // 開啟刪除 Modal
     openDelProductModal (item) {
@@ -138,7 +138,7 @@ export default {
     }
   },
   created () {
-    this.getProducts()
+    this.getProducts();
   }
-}
+};
 </script>

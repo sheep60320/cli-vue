@@ -190,14 +190,14 @@ export default {
   props: {
     product: {
       type: Object,
-      default () { return {} }
+      default () { return {}; }
     }
   },
   watch: {
     product () {
-      this.tempProduct = this.product
+      this.tempProduct = this.product;
       if (!this.tempProduct.images) {
-        this.tempProduct.images = []
+        this.tempProduct.images = [];
       }
     }
   },
@@ -205,7 +205,7 @@ export default {
     return {
       modal: {},
       tempProduct: {}
-    }
+    };
   },
   methods: {
     uploadFile () {
@@ -222,5 +222,5 @@ export default {
     }
   },
   mixins: [modalMixin]
-}
+};
 </script>

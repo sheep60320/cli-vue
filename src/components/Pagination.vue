@@ -28,7 +28,7 @@ export default {
   props: ['pages'],
   methods: {
     updatePage (page) {
-      console.log(page)
+      console.log(page);
       this.$emit('emit-pages', page);
     }
   }

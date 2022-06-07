@@ -1,5 +1,5 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../views/Home.vue'
+import { createRouter, createWebHashHistory } from 'vue-router';
+import Home from '../views/Home.vue';
 
 const routes = [
   {
@@ -55,12 +55,12 @@ const routes = [
       }
     ]
   }
-]
+];
 
 const router = createRouter({
   history: createWebHashHistory(),
   linkActiveClass: 'active',
   routes
-})
+});
 
-export default router
+export default router;
