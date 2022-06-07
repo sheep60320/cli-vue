@@ -196,6 +196,9 @@ export default {
   watch: {
     product () {
       this.tempProduct = this.product
+      if (!this.tempProduct.images) {
+        this.tempProduct.images = []
+      }
     }
   },
   data () {
@@ -210,6 +213,18 @@ export default {
     },
     hideModal () {
       this.modal.hide()
+    },
+    uploadFile () {
+      const uploadedFile = this.$refs.fileInput.files[0];
+      const formData = new FormData();
+      formData.append('file-to-upload', uploadedFile);
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/upload`;
+      this.$http.post(url, formData).then((response) => {
+        console.log(response.data);
+        if (response.data.success) {
+          this.tempProduct.imageUrl = response.data.imageUrl;
+        }
+      });
     }
   },
   mounted () {
