@@ -1,7 +1,7 @@
 <template>
   <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
-      <li class="page-item" :class="{ 'disabled': pages.current_page === 1 }">
+      <li class="page-item" :class="{ 'disabled': pages.current_page <= 1 }">
         <a class="page-link" href="#" aria-label="Previous" @click.prevent="updatePage(pages.current_page - 1)">
           <span aria-hidden="true">&laquo;</span>
         </a>
@@ -12,7 +12,7 @@
           {{ page }}
         </a>
       </li>
-      <li class="page-item" :class="{ 'disabled': pages.current_page === pages.total_pages }">
+      <li class="page-item" :class="{ 'disabled': (pages.current_page === pages.total_pages) || (pages.total_pages == 0) }">
         <a class="page-link" href="#" aria-label="Next" @click.prevent="updatePage(pages.current_page + 1)">
           <span aria-hidden="true">&raquo;</span>
         </a>

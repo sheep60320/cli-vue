@@ -19,6 +19,6 @@ app.config.globalProperties.$httpMessageState = $httpMessageState;
 
 app.use(VueAxios, axios)
 app.use(router)
-app.component('Loading', Loading);
+app.component('Loading', Loading)
 app.mount('#app')
 // createApp(App).use(router).mount('#app')
